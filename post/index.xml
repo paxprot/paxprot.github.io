@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Mika&#39;s Blog</title>
-        <link>https://example.com/post/</link>
+        <link>https://blog.mikadesu.uk/post/</link>
         <description>Recent content on Mika&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Mika</copyright>
-        <lastBuildDate></lastBuildDate><atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate></lastBuildDate><atom:link href="https://blog.mikadesu.uk/post/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>
