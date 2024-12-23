@@ -13,8 +13,9 @@
         <pubDate>Mon, 23 Dec 2024 13:31:45 +0800</pubDate>
         
         <guid>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</guid>
-        <description>&lt;p&gt;首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程&lt;/p&gt;
-&lt;p&gt;其次登录服务器，安装docker和docker compose&lt;/p&gt;
+        <description>&lt;p&gt;Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程&lt;/p&gt;
+&lt;p&gt;首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程&lt;/p&gt;
+&lt;p&gt;登录服务器，安装docker和docker compose&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;wget -qO- https://get.docker.com | sh&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如果是国内的机器，请使用以下命令&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;wget -qO- https://get.docker.com | sh --mirror Aliyun&lt;/code&gt;&lt;/p&gt;
@@ -105,7 +106,7 @@
     &gt;https://yourdomain.example.com&lt;/a&gt; 登录&lt;/p&gt;
 &lt;p&gt;点击底栏的设置图标，打开后端设置，名称随意，输入后端地址：https://yourdomain.example.com/MHxrd3DfOBGU319E5C53&lt;/p&gt;
 &lt;p&gt;保存，将默认后端改成你新建的后端地址&lt;/p&gt;
-&lt;p&gt;至此sub-store服务端设置完成&lt;/p&gt;
+&lt;p&gt;至此sub-store服务端部署完成&lt;/p&gt;
 </description>
         </item>
         

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n其次登录服务器，安装docker和docker compose\nwget -qO- https://get.docker.com | sh\n如果是国内的机器，请使用以下命令\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程\n首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n">
 <title>使用docker-compose和caddy建立sub-store实例</title>
 
 <link rel='canonical' href='https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="使用docker-compose和caddy建立sub-store实例">
-<meta property='og:description' content="首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n其次登录服务器，安装docker和docker compose\nwget -qO- https://get.docker.com | sh\n如果是国内的机器，请使用以下命令\n">
+<meta property='og:description' content="Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程\n首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n">
 <meta property='og:url' content='https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/'>
 <meta property='og:site_name' content='Mika&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-12-23T13:31:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-23T13:31:45&#43;08:00'/>
 <meta name="twitter:title" content="使用docker-compose和caddy建立sub-store实例">
-<meta name="twitter:description" content="首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n其次登录服务器，安装docker和docker compose\nwget -qO- https://get.docker.com | sh\n如果是国内的机器，请使用以下命令\n">
+<meta name="twitter:description" content="Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程\n首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程\n">
     </head>
     <body class="
     article-page
@@ -209,8 +209,9 @@
     <section class="article-content">
     
     
-    <p>首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程</p>
-<p>其次登录服务器，安装docker和docker compose</p>
+    <p>Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程</p>
+<p>首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程</p>
+<p>登录服务器，安装docker和docker compose</p>
 <p><code>wget -qO- https://get.docker.com | sh</code></p>
 <p>如果是国内的机器，请使用以下命令</p>
 <p><code>wget -qO- https://get.docker.com | sh --mirror Aliyun</code></p>
@@ -301,7 +302,7 @@
     >https://yourdomain.example.com</a> 登录</p>
 <p>点击底栏的设置图标，打开后端设置，名称随意，输入后端地址：https://yourdomain.example.com/MHxrd3DfOBGU319E5C53</p>
 <p>保存，将默认后端改成你新建的后端地址</p>
-<p>至此sub-store服务端设置完成</p>
+<p>至此sub-store服务端部署完成</p>
 
 </section>
 
