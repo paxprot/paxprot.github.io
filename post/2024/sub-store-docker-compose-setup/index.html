@@ -1,0 +1,337 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="zh-CN"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Sub-Store Docker Compose Setup - Mika Blogs</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程
+其次登录服务器，安装docker和docker compose
+wget -qO- https://get.docker.com | sh
+如果是国内的机器，请使用以下命令
+wget -qO- https://get.docker.com | sh --mirror Aliyun
+使用 pwgen -s 20 生成随机路径，如果没有pwgen请先通过 apt install pwgen 安装，以下以生成的随机路径 MHxrd3DfOBGU319E5C53 为例
+新建文件夹sub-store mkdir sub-store &amp;&amp; cd sub-store
+创建docker-compose.yml文件，填入以下内容
+services:
+  caddy:
+    image: caddy
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - &#34;443:443&#34;
+    volumes:
+      - ./conf:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+  sub-store:
+    image: xream/sub-store
+    container_name: sub-store
+    restart: unless-stopped
+    volumes:
+       - ./data:/opt/app/data
+    environment:
+      SUB_STORE_FRONTEND_BACKEND_PATH: &#34;/MHxrd3DfOBGU319E5C53&#34; # 这里改成你自己的随机路径
+      SUB_STORE_CRON: &#34;55 23 * * *&#34;
+volumes:
+  caddy_data:
+  caddy_config:
+生成存放caddy配置的文件夹，创建Caddyfile" />
+  <meta name="author" content="Mika Blogs" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  <script
+    defer
+    src="http://localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+
+  
+  <link
+    rel="icon"
+    href="http://localhost:1313/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://localhost:1313/apple-touch-icon.png"
+  />
+
+  
+  <meta name="generator" content="Hugo 0.140.0">
+
+  
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+  <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+    <a class="-translate-y-[1px] text-2xl font-medium" href="http://localhost:1313/"
+      >Mika Blogs</a
+    >
+    <div
+      class="btn-dark text-[0] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-14">
+    <h1 class="!my-0 pb-2.5">Sub-Store Docker Compose Setup</h1>
+
+    
+    <div class="text-xs antialiased opacity-60">
+      
+      <time>Dec 23, 2024</time>
+      
+      
+      
+      
+    </div>
+    
+  </header>
+
+  <section><p>首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程</p>
+<p>其次登录服务器，安装docker和docker compose</p>
+<p><code>wget -qO- https://get.docker.com | sh</code></p>
+<p>如果是国内的机器，请使用以下命令</p>
+<p><code>wget -qO- https://get.docker.com | sh --mirror Aliyun</code></p>
+<p>使用 <code>pwgen -s 20</code> 生成随机路径，如果没有pwgen请先通过 <code>apt install pwgen</code> 安装，以下以生成的随机路径 <code>MHxrd3DfOBGU319E5C53</code> 为例</p>
+<p>新建文件夹sub-store <code>mkdir sub-store &amp;&amp; cd sub-store</code></p>
+<p>创建docker-compose.yml文件，填入以下内容</p>
+<pre tabindex="0"><code>services:
+  caddy:
+    image: caddy
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - &#34;443:443&#34;
+    volumes:
+      - ./conf:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+  sub-store:
+    image: xream/sub-store
+    container_name: sub-store
+    restart: unless-stopped
+    volumes:
+       - ./data:/opt/app/data
+    environment:
+      SUB_STORE_FRONTEND_BACKEND_PATH: &#34;/MHxrd3DfOBGU319E5C53&#34; # 这里改成你自己的随机路径
+      SUB_STORE_CRON: &#34;55 23 * * *&#34;
+volumes:
+  caddy_data:
+  caddy_config:
+</code></pre><p>生成存放caddy配置的文件夹，创建Caddyfile</p>
+<pre tabindex="0"><code>mkdir conf &amp;&amp; cd conf
+nano Caddyfile
+</code></pre><p>将以下内容填入Caddyfile</p>
+<pre tabindex="0"><code>yourdomain.example.com { # 这里改成你的域名
+  reverse_proxy http://sub-store:3001
+}
+</code></pre><p>然后运行 <code>docker compose up -d</code> 拉起容器，稍等一会等caddy生成证书后，通过 <a href="https://yourdomain.example.com?api=https://yourdomain.example.com/MHxrd3DfOBGU319E5C53">https://yourdomain.example.com?api=https://yourdomain.example.com/MHxrd3DfOBGU319E5C53</a> 登录sub-store后台</p>
+<p>首次登录需要输入完整地址，后续可以直接通过 <a href="https://yourdomain.example.com">https://yourdomain.example.com</a> 登录</p>
+<p>点击底栏的设置图标，打开后端设置，名称随意，输入后端地址：https://yourdomain.example.com/MHxrd3DfOBGU319E5C53</p>
+<p>保存，将默认后端改成你新建的后端地址</p>
+<p>至此sub-store服务端设置完成</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+  <div class="mr-auto">
+  
+    &copy; 2024
+    <a class="link" href="http://localhost:1313/">Mika Blogs</a>
+  
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+
+  </body>
+</html>
