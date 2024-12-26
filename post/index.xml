@@ -7,7 +7,77 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Mika</copyright>
-        <lastBuildDate>Mon, 23 Dec 2024 13:31:45 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Sub-Store基础用法</title>
+        <link>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</link>
+        <pubDate>Thu, 26 Dec 2024 12:48:08 +0800</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</guid>
+        <description>&lt;p&gt;上回我们讲到怎么配置sub-store服务端，今天我们来讲讲sub-store的基础用法：导入我们的自定义节点，生成一个全平台通用的sing-box订阅文件&lt;/p&gt;
+&lt;p&gt;sing-box是一个全平台通用的代理软件，支持目前市面上几乎所有的主流协议，如果你的目的仅仅是翻墙，那么使用它已完全足够&lt;/p&gt;
+&lt;p&gt;首先我们登录到上回搭建的sub-store后台：https://yourdomain.example.com&lt;/p&gt;
+&lt;p&gt;点击右上角的“+”号，选择单条订阅（这里有一个123是因为我已经生成过了订阅文件，新建的是空的）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_12-59-03.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;带星号的是必填项，随便填一个名字，然后选择“本地订阅”，导入你自建的节点URI或者JSON（可以从小火箭、V2RAYNG这样的软件中导出），每行一个&lt;/p&gt;
+&lt;p&gt;如果你是机场用户，可以选择“远程链接”导入你的机场订阅节点，其他步骤是一样的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-01-33.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;填完后保存，这样我们节点就导入好了，接下来我们来导入sing-box配置文件&lt;/p&gt;
+&lt;p&gt;底栏点击第二个图标，进入文件管理（这里有两个test文件是因为我已经创建过了，新建的是空的）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-09-02.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-3&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;填一个名字，来源选择远程，这里推荐亚托利佬的配置文件，填入&lt;code&gt;https://raw.githubusercontent.com/xishang0128/sub-store-template/main/sing-box.json&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-10-59.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-4&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;拉到下面来到脚本操作，在添加一个操作下面点击“脚本操作”，选择链接，填入&lt;code&gt;https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js#name=123&amp;amp;outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（懒得截图了）&lt;/p&gt;
+&lt;p&gt;最后保存，回到文件管理界面，点击文件旁边的第二个图标复制，然后就可以到sing-box里导入你的专属订阅链接了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-15-14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-5&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>使用docker-compose和caddy建立sub-store实例</title>
         <link>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</link>
         <pubDate>Mon, 23 Dec 2024 13:31:45 +0800</pubDate>
