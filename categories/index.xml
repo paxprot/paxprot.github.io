@@ -6,6 +6,15 @@
         <description>Recent content in Categories on Mika&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Mika</copyright><atom:link href="https://blog.mikadesu.uk/categories/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Mika</copyright>
+        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>技术</title>
+        <link>https://blog.mikadesu.uk/categories/%E6%8A%80%E6%9C%AF/</link>
+        <pubDate>Thu, 26 Dec 2024 12:48:08 +0800</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/categories/%E6%8A%80%E6%9C%AF/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>
