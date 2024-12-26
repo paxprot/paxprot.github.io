@@ -62,7 +62,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;拉到下面来到脚本操作，在添加一个操作下面点击“脚本操作”，选择链接，填入&lt;code&gt;https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js#name=yatuoli-1&amp;amp;outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸&lt;/code&gt; （这里要把name参数的值改成你的节点订阅的名字，如果你是照抄我的步骤来的，那么可以照抄这条&lt;/p&gt;
+&lt;p&gt;拉到下面来到脚本操作，在添加一个操作下面点击“脚本操作”，选择链接，填入&lt;code&gt;https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js#name=123&amp;amp;outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸&lt;/code&gt; （这里要把name参数的值改成你的节点订阅的名字，比如我之前建立的123&lt;/p&gt;
 &lt;p&gt;（懒得截图了）&lt;/p&gt;
 &lt;p&gt;最后保存，回到文件管理界面，点击文件旁边的第二个图标复制，然后就可以到sing-box里导入你的专属订阅链接了&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-15-14.png&#34;
