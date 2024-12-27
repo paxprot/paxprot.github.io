@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Mika&#39;s Blog</title>
-        <link>https://blog.mikadesu.uk/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in Categories on Mika&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Mika</copyright>
-        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>技术？</title>
-        <link>https://blog.mikadesu.uk/categories/%E6%8A%80%E6%9C%AF/</link>
+        <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF/</link>
         <pubDate>Thu, 26 Dec 2024 12:48:08 +0800</pubDate>
         
-        <guid>https://blog.mikadesu.uk/categories/%E6%8A%80%E6%9C%AF/</guid>
+        <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF/</guid>
         <description></description>
         </item>
         

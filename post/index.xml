@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Mika&#39;s Blog</title>
-        <link>https://blog.mikadesu.uk/post/</link>
+        <link>http://localhost:1313/post/</link>
         <description>Recent content in Posts on Mika&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Mika</copyright>
-        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Dec 2024 12:48:08 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Sub-Store基础用法</title>
-        <link>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</link>
+        <link>http://localhost:1313/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</link>
         <pubDate>Thu, 26 Dec 2024 12:48:08 +0800</pubDate>
         
-        <guid>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</guid>
+        <guid>http://localhost:1313/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</guid>
         <description>&lt;p&gt;上回我们讲到怎么配置sub-store服务端，今天我们来讲讲sub-store的基础用法：导入我们的自定义节点，生成一个全平台通用的sing-box订阅文件&lt;/p&gt;
 &lt;p&gt;sing-box是一个全平台通用的代理软件，支持目前市面上几乎所有的主流协议，如果你的目的仅仅是翻墙，那么使用它已完全足够&lt;/p&gt;
 &lt;p&gt;首先我们登录到上回搭建的sub-store后台：https://yourdomain.example.com&lt;/p&gt;
@@ -79,10 +79,10 @@
         </item>
         <item>
         <title>使用docker-compose和caddy建立sub-store实例</title>
-        <link>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</link>
+        <link>http://localhost:1313/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</link>
         <pubDate>Mon, 23 Dec 2024 13:31:45 +0800</pubDate>
         
-        <guid>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</guid>
+        <guid>http://localhost:1313/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</guid>
         <description>&lt;p&gt;Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程&lt;/p&gt;
 &lt;p&gt;首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程&lt;/p&gt;
 &lt;p&gt;登录服务器，安装docker和docker compose&lt;/p&gt;
