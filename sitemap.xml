@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.mikadesu.uk/categories/</loc>
+    <lastmod>2025-01-27T17:11:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/</loc>
+    <lastmod>2025-01-27T17:11:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/p/ollama--open-webui%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2025-01-27T17:11:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/post/</loc>
+    <lastmod>2025-01-27T17:11:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2025-01-27T17:11:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2024-12-26T12:48:08+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</loc>
+    <lastmod>2024-12-23T13:31:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/page/</loc>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/search/</loc>
+  </url><url>
+    <loc>https://blog.mikadesu.uk/tags/</loc>
+  </url>
+</urlset>

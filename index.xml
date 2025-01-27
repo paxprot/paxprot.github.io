@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Mika&#39;s Blog</title>
+        <link>https://blog.mikadesu.uk/</link>
+        <description>Recent content on Mika&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Mika</copyright>
+        <lastBuildDate>Mon, 27 Jan 2025 17:11:41 +0800</lastBuildDate><atom:link href="https://blog.mikadesu.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ollama &#43; open-webui安装教程</title>
+        <link>https://blog.mikadesu.uk/p/ollama--open-webui%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
+        <pubDate>Mon, 27 Jan 2025 17:11:41 +0800</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/p/ollama--open-webui%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
+        <description>&lt;h2 id=&#34;什么是ollama&#34;&gt;什么是Ollama？
+&lt;/h2&gt;&lt;p&gt;Ollama是一个用于在本地运行&lt;strong&gt;大语言模型&lt;/strong&gt;的开源工具。&lt;/p&gt;
+&lt;h2 id=&#34;准备工作安装英伟达驱动和cuda&#34;&gt;准备工作：安装英伟达驱动和CUDA
+&lt;/h2&gt;&lt;p&gt;这里因为我们使用的是Ubuntu系统，在初始安装的时候要把允许第三方驱动勾上，系统安装完成后，通过以下命令安装驱动工具&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt update &amp;amp;&amp;amp; apt install ubuntu-drivers-common&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;安装完成后，运行以下命令自动安装服务器显卡驱动&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ubuntu-drivers --gpgpu install&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后安装Cuda，这里我偷懒直接APT安装了，你也可以从英伟达官网下载最新版本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt install nvidia-cuda-toolkit&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这个包比较大，请耐心等待，安装完成后我们准备工作就完成了，可以通过 &lt;code&gt;nvidia-smi&lt;/code&gt; 查看显卡信息&lt;/p&gt;
+&lt;h2 id=&#34;第一步安装ollama&#34;&gt;第一步：安装Ollama
+&lt;/h2&gt;&lt;p&gt;通过官网提供的一键脚本安装Ollama，网址没有被墙大陆机器也可以直接运行&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -fsSL https://ollama.com/install.sh | sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;安装完成后，可以使用 &lt;code&gt;systemctl status ollama&lt;/code&gt; 查看一下Ollama的运行状态，正常是active(running)，没问题我们进入下一步安装open-webui&lt;/p&gt;
+&lt;h2 id=&#34;第二步使用docker-compose安装open-webui&#34;&gt;第二步：使用docker-compose安装open-webui
+&lt;/h2&gt;&lt;p&gt;在Ubuntu的初始安装界面可以选择安装docker，如果你当时没有安装，可以通过以下命令一键安装&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wget -qO- https://get.docker.com | sh --mirror Aliyun&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;请注意&lt;/strong&gt;：通过Ubuntu初始设置安装的docker是通过&lt;strong&gt;snap&lt;/strong&gt;安装的，如果需要修改daemon.json，文件位置在 &lt;code&gt;/var/snap/docker/current/config/daemon.json&lt;/code&gt;（而不是&lt;code&gt;/etc/docker/damon.json&lt;/code&gt;），修改完成后，需要运行 &lt;code&gt;snap restart docker&lt;/code&gt; 来应用变化&lt;/p&gt;
+&lt;p&gt;新建一个open-webui的文件夹，复制compose文件如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;open-webui&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ghcr.io/open-webui/open-webui:main&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;open-webui&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;restart&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;unless-stopped&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;network_mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;host&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;open-webui:/app/backend/data&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;OLLAMA_BASE_URL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://127.0.0.1:11434&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ENABLE_OPENAI_API&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;open-webui&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果是大陆的机器，请自行寻找ghcr的镜像&lt;/p&gt;
+&lt;p&gt;运行 &lt;code&gt;docker compose up -d&lt;/code&gt; 拉起容器，此时可以通过 &lt;code&gt;http://IP:8080&lt;/code&gt; 访问open-webui&lt;/p&gt;
+&lt;h2 id=&#34;第三步运行大语言模型&#34;&gt;第三步：运行大语言模型
+&lt;/h2&gt;&lt;p&gt;根据你机器的配置规格运行一个大语言模型，这里以deepseek为例&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ollama run --verbose deepseek-r1:8b&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果成功调用GPU，那么此时运行 &lt;code&gt;ollama ps&lt;/code&gt; 会显示PROCESSOR为100% GPU，也可以通过 &lt;code&gt;nvidia-smi&lt;/code&gt; 查看GPU负载&lt;/p&gt;
+&lt;p&gt;至此部署完成~&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Sub-Store基础用法</title>
+        <link>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</link>
+        <pubDate>Thu, 26 Dec 2024 12:48:08 +0800</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/p/sub-store%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</guid>
+        <description>&lt;p&gt;上回我们讲到怎么配置sub-store服务端，今天我们来讲讲sub-store的基础用法：导入我们的自定义节点，生成一个全平台通用的sing-box订阅文件&lt;/p&gt;
+&lt;p&gt;sing-box是一个全平台通用的代理软件，支持目前市面上几乎所有的主流协议，如果你的目的仅仅是翻墙，那么使用它已完全足够&lt;/p&gt;
+&lt;p&gt;首先我们登录到上回搭建的sub-store后台：https://yourdomain.example.com&lt;/p&gt;
+&lt;p&gt;点击右上角的“+”号，选择单条订阅（这里有一个123是因为我已经生成过了订阅文件，新建的是空的）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_12-59-03.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;带星号的是必填项，随便填一个名字，然后选择“本地订阅”，导入你自建的节点URI或者JSON（可以从小火箭、V2RAYNG这样的软件中导出），每行一个&lt;/p&gt;
+&lt;p&gt;如果你是机场用户，可以选择“远程链接”导入你的机场订阅节点，其他步骤是一样的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-01-33.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;填完后保存，这样我们节点就导入好了，接下来我们来导入sing-box配置文件&lt;/p&gt;
+&lt;p&gt;底栏点击第二个图标，进入文件管理（这里有两个test文件是因为我已经创建过了，新建的是空的）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-09-02.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-3&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;填一个名字，来源选择远程，这里推荐亚托利佬的配置文件，填入&lt;code&gt;https://raw.githubusercontent.com/xishang0128/sub-store-template/main/sing-box.json&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-10-59.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-4&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;拉到下面来到脚本操作，在添加一个操作下面点击“脚本操作”，选择链接，填入&lt;code&gt;https://raw.githubusercontent.com/xream/scripts/main/surge/modules/sub-store-scripts/sing-box/template.js#name=123&amp;amp;outbound=🕳ℹ️all|all-auto🕳ℹ️hk|hk-auto🏷ℹ️港|hk|hongkong|kong kong|🇭🇰🕳ℹ️tw|tw-auto🏷ℹ️台|tw|taiwan|🇹🇼🕳ℹ️jp|jp-auto🏷ℹ️日本|jp|japan|🇯🇵🕳ℹ️sg|sg-auto🏷ℹ️^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)🕳ℹ️us|us-auto🏷ℹ️美|us|unitedstates|united states|🇺🇸&lt;/code&gt; （这里要把name参数的值改成你的节点订阅的名字，比如我之前建立的123&lt;/p&gt;
+&lt;p&gt;（懒得截图了）&lt;/p&gt;
+&lt;p&gt;最后保存，回到文件管理界面，点击文件旁边的第二个图标复制，然后就可以到sing-box里导入你的专属订阅链接了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.mikadesu.uk/Snipaste_2024-12-26_13-15-14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sub-store-5&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>使用docker-compose和caddy建立sub-store实例</title>
+        <link>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</link>
+        <pubDate>Mon, 23 Dec 2024 13:31:45 +0800</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/p/%E4%BD%BF%E7%94%A8docker-compose%E5%92%8Ccaddy%E5%BB%BA%E7%AB%8Bsub-store%E5%AE%9E%E4%BE%8B/</guid>
+        <description>&lt;p&gt;Sub-Store是一个功能强大的订阅管理器，可以一次性管理多个自建节点和机场订阅，生成配置文件，以下是Sub-Store的后端部署过程&lt;/p&gt;
+&lt;p&gt;首先你需要一台服务器，并且将域名指向这个服务器的IP，这里省略过程&lt;/p&gt;
+&lt;p&gt;登录服务器，安装docker和docker compose&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wget -qO- https://get.docker.com | sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果是国内的机器，请使用以下命令&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wget -qO- https://get.docker.com | sh --mirror Aliyun&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;pwgen -s 20&lt;/code&gt; 生成随机路径，如果没有pwgen请先通过 &lt;code&gt;apt install pwgen&lt;/code&gt; 安装，以下以生成的随机路径 &lt;code&gt;MHxrd3DfOBGU319E5C53&lt;/code&gt; 为例&lt;/p&gt;
+&lt;p&gt;新建文件夹sub-store &lt;code&gt;mkdir sub-store &amp;amp;&amp;amp; cd sub-store&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;运行 &lt;code&gt;nano docker-compose.yml&lt;/code&gt; 创建compose文件，填入以下内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  caddy:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: caddy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: caddy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: unless-stopped
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ports:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - &amp;#34;443:443&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - ./conf:/etc/caddy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - caddy_data:/data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - caddy_config:/config
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  sub-store:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: xream/sub-store
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: sub-store
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: unless-stopped
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       - ./data:/opt/app/data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    environment:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      SUB_STORE_FRONTEND_BACKEND_PATH: &amp;#34;/MHxrd3DfOBGU319E5C53&amp;#34; # 这里改成你自己的随机路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      SUB_STORE_CRON: &amp;#34;55 23 * * *&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  caddy_data:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  caddy_config:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ctrl + X 保存&lt;/p&gt;
+&lt;p&gt;生成存放caddy配置的文件夹，创建Caddyfile&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir conf &amp;amp;&amp;amp; cd conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano Caddyfile
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将以下内容填入Caddyfile&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yourdomain.example.com { # 这里改成你的域名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  reverse_proxy http://sub-store:3001
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ctrl + X 保存，然后回到上层目录 &lt;code&gt;cd ..&lt;/code&gt; ，运行 &lt;code&gt;docker compose up -d&lt;/code&gt; 拉起容器&lt;/p&gt;
+&lt;p&gt;稍等一会等caddy生成证书后，通过 &lt;a class=&#34;link&#34; href=&#34;https://yourdomain.example.com?api=https://yourdomain.example.com/MHxrd3DfOBGU319E5C53&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://yourdomain.example.com?api=https://yourdomain.example.com/MHxrd3DfOBGU319E5C53&lt;/a&gt; 登录sub-store后台&lt;/p&gt;
+&lt;p&gt;首次登录需要输入完整地址，后续可以直接通过 &lt;a class=&#34;link&#34; href=&#34;https://yourdomain.example.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://yourdomain.example.com&lt;/a&gt; 登录&lt;/p&gt;
+&lt;p&gt;点击底栏的设置图标，打开后端设置，名称随意，输入后端地址：https://yourdomain.example.com/MHxrd3DfOBGU319E5C53&lt;/p&gt;
+&lt;p&gt;保存，将默认后端改成你新建的后端地址&lt;/p&gt;
+&lt;p&gt;至此sub-store服务端部署完成&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>https://blog.mikadesu.uk/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.mikadesu.uk/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
